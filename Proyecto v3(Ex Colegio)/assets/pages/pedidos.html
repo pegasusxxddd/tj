@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../Css/pedidos.css">
+    <link rel="stylesheet" href="../Css/barra_lateral.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-storage.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../Css/mejora.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+</head>
+
+<body>
+    <span class="open_bar" id="open_bar">
+        <i class="fa fa-bars"></i>
+    </span>
+    <div class="bar_lateral" id="bar_lateral">
+        <span class="closes_bar" id="closes_bar">
+            <i class="fa fa-times"></i>
+        </span>
+        <div class="controles">
+            <a href="/Index.html" class="btn" id="Home">
+                <i class="fa fa-home icon"></i>
+                <span class="sub">Home</span>
+            </a>
+            <a href="" class="btn" id="Profecionales">
+                <i class="fa fa-users icon"></i>
+                <span class="sub">Personal De Trabajo</span>
+            </a>
+            <a href="https://www.google.com/maps" target="_blank" class="btn" id="Profecionales">
+                <i class="fa fa-map-marker icon"></i>
+                <span class="sub">Ubicacion</span>
+            </a>
+            <button class="btn Abrir_Pgx" id="Upload" data-modal="Subir_archis">
+                <i class="fa fa-upload icon"></i>
+                <span class="sub">Subir Archivos</span>
+            </button>
+            <button class="btn Abrir_Pgx" id="Shopping" data-modal="notificaciones">
+                <i class="fa fa-shopping-cart icon"></i>
+                <span class="sub">1</span>
+            </button>
+            <button class="btn" id="Error">
+                <i class="fa fa-exclamation-triangle icon"></i>
+                <span class="sub">Reporte De Error</span>
+            </button>
+            <button class="btn" id="Question">
+                <i class="fa fa-question icon"></i>
+                <span class="sub">Preguntas</span>
+            </button>
+        </div>
+        <div class="importante">
+            <button class="btn" id="cog">
+                <i class="fa fa-cog icon"></i>
+                <span class="sub">Configuracion</span>
+            </button>
+            <div class="user_cog">
+                <div class="cong" id="cong">
+                    <button id="clear"><i class="fa fa-trash"></i> Informacion</button>
+                    <button id="salir"><i class="fa fa-sign-out"></i> Salir</button>
+                </div>
+                <img src="" alt="" id="img_user">
+            </div>
+        </div>
+    </div>
+    <div class="cartas">
+        <div class="carta ESTUDIANTE" id="ESTUDIANTE" style="--carta: #ffdd9d">
+            <span id="close" class="close"><i class="fa fa-close"></i></span>
+            <div class="controladores">
+                <span class="prev" id="prev_prf"><i class="fas fa-angle-left"></i></span>
+                <span class="nex" id="nex_prf"><i class="fas fa-angle-right"></i></span>
+            </div>
+            <div class="img">
+                <img src="../Img/4_5c294b63-b829-4d25-8c98-8860ad2ee813.jpg" alt="">
+            </div>
+            <h2 class="NOMBRE_CARTA">CARTA ESTUDIANTE</h2>
+            <div class="informacion_">
+                <div class="parte activos" id="inicio">
+                    <label for="">Trabajo:</label>
+                    <select class="selec">
+                        <option value="null" selected disabled>Seleccione Un Tipo De Trabajo</option>
+                        <option value="Cr">Croquis</option>
+                        <option value="Ma">Maquetas</option>
+                        <option value="Es">Escalado</option>
+                    </select>
+                    <label for="">Encargado:</label>
+                    <select class="selec-frabricante" id="selec-frabricante">
+                        <option selected disabled>Elige El Profesional O Grupo</option>
+                        <option value="Estudiantes">Estudiantes</option>
+                    </select>
+                </div>
+                <div class="Cr">
+                    <div class="parte parte1">Cr1</div>
+                    <div class="parte parte2">Cr2</div>
+                </div>
+                <div class="Ma">
+                    <div class="parte parte1">Ma1</div>
+                    <div class="parte parte2">Ma2</div>
+                </div>
+                <div class="Es">
+                    <div class="parte parte1">Es1</div>
+                    <div class="parte parte2">Es2</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carta PROFESIONAL" id="PROFESIONAL" style="--carta: #fff">
+            <span id="close" class="close"><i class="fa fa-close"></i></span>
+            <div class="controladores">
+                <span class="prev" id="prev_prf"><i class="fas fa-angle-left"></i></span>
+                <span class="nex" id="nex_prf"><i class="fas fa-angle-right"></i></span>
+            </div>
+            <div class="img">
+                <img src="https://cajaprevisionmza.com.ar/wp-content/uploads/2022/08/post-ingenieros.jpg" alt="">
+            </div>
+            <h2 class="NOMBRE_CARTA">CARTA PROFESIONAL</h2>
+            <div class="informacion_">
+                <div class="parte activos" id="inicio">
+                    <h2>PROYECTO</h2>
+                    <label for="">Trabajo:</label>
+                    <select class="selec" id="Tipo-De-Proyecto">
+                        <option value="null" selected disabled>Seleccione Un Tipo De Trabajo</option>
+                        <option value="Con">Consultoría</option>
+                        <option value="PDEs">Proyectos De Edificación</option>
+                        <option value="EDP">Ejecución De Proyectos</option>
+                        <option value="SDEDP">Supervisión De Ejecución De Proyectos</option>
+                    </select>
+                    <label for="">Encargado:</label>
+                    <select class="selec-frabricante" id="selec-frabricante2">
+                        <option selected disabled>Elige El Profesional O Grupo</option>
+                        <option value="sandro_cuba">Arquitecto Sandro Cuba</option>
+                        <option value="Dariela Cuba">Arquitecta Dariela Cuba</option>
+                        <option value="wilson_champi">ING Civil Wilson Champi</option>
+                    </select>
+                    <label for="tipoDeProyecto">Proyecto De:</label>
+                    <select name="Tipo-De-Proyecto" id="tipoDeProyecto" onchange="guardarDato('tipoDeProyecto', this.value); mostrarInput()">
+                        <option value="null" disabled selected>Tipo De Proyecto</option>
+                        <option value="publico">Público</option>
+                        <option value="privado">Privado</option>
+                    </select>
+                    <label for="">Un Proyecto Como?:</label>
+                    <input type="text" id="otroInput" name="otroInput" oninput="guardarDato('otroInput', this.value)">
+                </div>
+                <div class="PDEs">
+                    <div class="parte parte1">
+                        <h2>UBICACION DEL TERRENO</h2>
+                        <form id="locationForm">
+                        <input type="text" id="country" value="peru" disabled oninput="guardarDato('pais', this.value)" style="display: none;">
+                        <label for="region">Región:</label>
+                        <select id="region" name="region">
+                            <option value="Cusco" disabled selected>Cusco</option>
+                        </select>
+                        <label for="">Provincia De:</label>
+                        
+                        <select id="province" name="province" oninput="guardarDato('provincia:', this.value)">
+                            <option value="" disabled selected>Seleccionar Provincia</option>
+                            <option value="Acomayo">Acomayo</option>
+                            <option value="Anta">Anta</option>
+                            <option value="Calca">Calca</option>
+                            <option value="Canas">Canas</option>
+                            <option value="Canchis">Canchis</option>
+                            <option value="Chumbivilcas">Chumbivilcas</option>
+                            <option value="Espinar">Espinar</option>
+                            <option value="La Convención">La Convención</option>
+                            <option value="Paruro">Paruro</option>
+                            <option value="Paucartambo">Paucartambo</option>
+                            <option value="Quispicanchi">Quispicanchi</option>
+                            <option value="Urubamba">Urubamba</option>
+                        </select>    
+                        <label for="">Distrito De:</label>
+                        <input type="text" id="location" oninput="guardarDato('distrito', this.value)">
+                        <br>
+                        <button type="submit">Ubicar</button>
+                    </form>
+                        <button type="button" class="como-btn">¿Cómo?</button>
+                        <span>Dirección exacta del terreno donde se realizará la construcción.</span>
+                        <div id="map"></div>
+                        <input type="text" id="markerURL" placeholder="URL de la ubicación aparecerá aquí" readonly />
+                    </div>
+                    <div class="parte parte2">
+                        <h2>INFORMACIÓN DEL TERRENO</h2>
+
+                        <label for="area">Área del Terreno:</label>
+                        <button type="button" class="como-btn">¿Cómo?</button>
+                        <span>Dimensión total del terreno en metros cuadrados.</span>
+                        <input type="text" id="area" name="area">
+
+                        <label for="perimetro">Perímetro del Terreno:</label>
+                        <button type="button" class="como-btn">¿Cómo?</button>
+                        <span>Longitud del contorno del terreno en metros.</span>
+                        <input type="text" id="perimetro" name="perimetro">
+
+                        <label for="pisos">Número de Pisos:</label>
+                        <button type="button" class="como-btn">¿Cómo?</button>
+                        <span>Cantidad de pisos que tendrá la edificación.</span>
+                        <input type="text" id="pisos" name="pisos">
+
+                        <label for="especificaciones">Especificaciones del Proyecto:</label>
+                        <button type="button" class="como-btn">¿Cómo?</button>
+                        <span>Detalles y características técnicas que desea el cliente.</span>
+                        <input type="text" id="especificaciones" name="especificaciones">
+                    </div>
+                    <div class="parte parte3">
+                        <h2>DOCUMENTOS</h2>
+                        <label for="documentos_pro">Documentos de Propiedad:</label>
+                        <button type="button" class="como-btn">¿Cómo?</button>
+                        <span>Títulos de propiedad del terreno.</span>
+                        <input type="text" id="documentos_pro" name="documentos_pro">
+
+                        <label for="certificado_parametros">Certificado de Parámetros Urbanísticos:</label>
+                        <button type="button" class="como-btn">¿Cómo?</button>
+                        <span>Documento que contiene las regulaciones y restricciones de uso del suelo.</span>
+                        <input type="text" id="certificado_parametros" name="certificado_parametros">
+
+                        <label for="mecanicas_suelo">Estudio de Mecánicas de Suelo:</label>
+                        <button type="button" class="como-btn">¿Cómo?</button>
+                        <span>Informe que analiza las condiciones del suelo del terreno.</span>
+                        <input type="text" id="mecanicas_suelo" name="mecanicas_suelo">
+
+                        <label for="zonificacion">Zonificación Urbana:</label>
+                        <button type="button" class="como-btn">¿Cómo?</button>
+                        <span>Información sobre la zonificación del área donde se ubica el terreno.</span>
+                        <input type="text" id="zonificacion" name="zonificacion">
+
+                        <button type="button" id="enviar">Enviar</button>
+                    </div>
+                </div>
+                <div class="Con">
+                    <div class="parte parte1">
+                        <h2>Información requerida para la consultoría</h2>
+                        <p>1.-Estudio topográfico</p>
+                        <li>Terreno del sitio <input class="chex" type="checkbox" name="" id=""></li>
+                        <li>Elevación <input class="chex" type="checkbox" name="" id=""></li>
+                        <li>Características naturales <input class="chex" type="checkbox" name="" id=""></li>
+                        <p>2.-Estudio de prefactibilidad</p>
+                        <li>Condiciones del suelo <input class="chex" type="checkbox" name="" id=""></li>
+                        <li>Clima <input class="chex" type="checkbox" name="" id=""></li>
+                        <li>Impacto ambiental <input class="chex" type="checkbox" name="" id=""></li>
+                        <p>3.-Códigos y regulaciones de construcción</p>
+                        <li>Códigos de construcción locales <input class="chex" type="checkbox" name="" id=""></li>
+                        <li>Regulaciones de zonificación <input class="chex" type="checkbox" name="" id=""></li>
+                        <li>Otras leyes relevantes <input class="chex" type="checkbox" name="" id=""></li>
+                        <p>4.-Presupuesto</p>
+                        <li>Costo de adquisición del terreno <input class="chex" type="checkbox" name="" id=""></li>
+                        <li>Costo de construcción <input class="chex" type="checkbox" name="" id=""></li>
+                        <li>Otros gastos <input class="chex" type="checkbox" name="" id=""></li>
+                        <p>5.-Requisitos de diseño</p>
+                        <li>Número de dormitorios <input class="chex" type="checkbox" name="" id=""></li>
+                        <li>Número de baños <input class="chex" type="checkbox" name="" id=""></li>
+                        <li>Áreas de estar <input class="chex" type="checkbox" name="" id=""></li>
+                        <li>Otras características <input class="chex" type="checkbox" name="" id=""></li>
+                        <p>6.-Análisis del sitio</p>
+                        <li>Orientación del sitio <input class="chex" type="checkbox" name="" id=""></li>
+                        <li>Dirección del viento <input class="chex" type="checkbox" name="" id=""></li>
+                        <li>Iluminación natural <input class="chex" type="checkbox" name="" id=""></li>
+                        <p>7.-Informe de investigación de suelo</p>
+                        <li>Capacidad de carga del suelo <input class="chex" type="checkbox" name="" id=""></li>
+                        <li>Asentamiento <input class="chex" type="checkbox" name="" id=""></li>
+                        <li>Propiedades geotécnicas <input class="chex" type="checkbox" name="" id=""></li>
+                        <p>8.-Evaluación del impacto ambiental</p>
+                        <li>Contaminación acústica <input class="chex" type="checkbox" name="" id=""></li>
+                        <li>Gestión de residuos <input class="chex" type="checkbox" name="" id=""></li>
+                        <li>Eficiencia energética <input class="chex" type="checkbox" name="" id=""></li>
+                        <p>9.-Conexiones de servicios públicos</p>
+                        <li>Disponibilidad y ubicación de las conexiones de servicios públicos <input class="chex" type="checkbox" name="" id=""></li>
+                      
+                        <button id="btn-enviar">Enviar a WhatsApp</button>
+                    </div>
+                    <div class="parte parte2"></div>
+                </div>
+                <div class="EDP">
+                    <div class="parte parte1"></div>
+                    <div class="parte parte2"></div>
+                </div>
+                <div class="SDEDP">
+                    <div class="parte parte1"></div>
+                    <div class="parte parte2"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carta PRE_GRADO" id="PRE_GRADO" style="--carta: #fd2e03">
+            <span id="close" class="close"><i class="fa fa-close"></i></span>
+            <div class="controladores">
+                <span class="prev" id="prev_prf"><i class="fas fa-angle-left"></i></span>
+                <span class="nex" id="nex_prf"><i class="fas fa-angle-right"></i></span>
+            </div>
+            <div class="img">
+                <img src="https://res.cloudinary.com/uvggt/image/upload/f_auto/v1565980359/2019/Agosto/Ingenieria%20Civil%20Visita%20estudiantes%20CIT/Estudiantes-CIT-Ingenieria-Civil-Sin-retoque.jpg"
+                    alt="">
+            </div>
+            <h2 class="NOMBRE_CARTA">CARTA PRE-GRADO</h2>
+            <div class="informacion_">
+                <div class="parte activos" id="inicio">
+                    <h2>PROYECTO</h2>
+                    <label for="">Trabajo:</label>
+                    <select class="selec" id="selec-tipo-de-encargo">
+                        <option value="null" selected disabled>Seleccione Un Tipo De Trabajo</option>
+                        <option value="Consu">Consultoría</option>
+                        <option value="Proyec">Proyectos</option>
+                        <option value="Supe">Supervisión</option>
+                        <option value="Otros">Otros</option>
+                    </select>
+                    <label for="">Encargado:</label>
+                    <select class="selec-frabricante" id="selec-prof">
+                        <option selected disabled>Elige El Profesional O Grupo</option>
+                        <option value="A">Arquitectos</option>
+                        <option value="I">Ingenieros</option>
+                    </select>
+                </div>
+                <div class="Consu">
+                    <div class="parte parte1"></div>
+                    <div class="parte parte2"></div>
+                </div>
+                <div class="Proyec">
+                    <div class="parte parte1"></div>
+                    <div class="parte parte2"></div>
+                </div>
+                <div class="Supe">
+                    <div class="parte parte1"></div>
+                    <div class="parte parte2"></div>
+                </div>
+                <div class="Otros">
+                    <div class="parte parte1"></div>
+                    <div class="parte parte2"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="Pgx" data-modal-pgx="Subir_archis" id="Subir_archis">
+        <span class="Close_Pgx" id="Close_Pgx"><i class="fa fa-times"></i></span>
+        <h2>Subir Archivos</h2>
+        <p>? Sube Los Archivos y Img De Los Documentos</p>
+        <div class="cargador-archivos">
+            <input type="file" id="fileToUpload" style="display: none">
+            <button class="btn_slc" onclick="selectFile()">Seleccionar archivo</button>
+            <input type="text" id="fileName" value="Ningún archivo seleccionado" disabled>
+            <button class="cargar Abrir_Pgx" onclick="subirArchivo()" data-modal="archivos">Cargar</button>
+        </div>
+    </div>
+    <div class="Pgx" data-modal-pgx="archivos" id="archivos">
+        <span class="Close_Pgx" id="Close_Pgx"><i class="fa fa-times"></i></span>
+
+        <div class="imageContainer" id="imageContainer">
+        </div>
+    </div>
+    <div class="Pgx" data-modal-pgx="notificaciones" id="notificaciones">
+        <span class="Close_Pgx" id="Close_Pgx"><i class="fa fa-times"></i></span>
+
+        <div class="" id="Metodos">
+        </div>
+    </div>
+    <script src="../Js/pedidos.js"></script>
+    <script src="../Data/Extractore.js"></script>
+    <script src="../Data/modal_basico.js"></script>
+    <script src="../Js/pedidos.js"></script>
+    <script src="../Data/Base/firebase.js"></script>
+    <script src="../Data/Base/modelos.js"></script>
+    <script src="../Data/pedidos.js"></script>
+    <script src="../Data/Base/wasap.js"></script>
+    <script src="../Js/mapa.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="../Js/js.js"></script>
+    <script>
+        var tip_p = document.getElementById("tip_p");
+        tip_p.textContent = localStorage.getItem('tipoDeProyecto');
+        function guardarDato(clave, valor) {
+            localStorage.setItem(clave, valor);
+            console.log(`Dato guardado: ${clave} = ${valor}`);
+        }
+
+    </script>
+    <script>
+// Selecciona todos los elementos de checkbox con la clase "chex"
+const checkboxes = document.querySelectorAll('.chex');
+
+// Selecciona el botón de enviar
+const btnEnviar = document.getElementById('btn-enviar');
+
+// Crear un array para almacenar los valores de las casillas de verificación seleccionadas
+let selectedValues = [];
+
+// Agregar un listener de eventos a cada casilla de verificación
+checkboxes.forEach((checkbox) => {
+  checkbox.addEventListener('click', (e) => {
+    if (e.target.checked) {
+      // Agregar el valor de la casilla de verificación seleccionada al array
+      selectedValues.push(e.target.parentNode.textContent);
+    } else {
+      // Remover el valor de la casilla de verificación deseleccionada del array
+      const index = selectedValues.indexOf(e.target.parentNode.textContent);
+      if (index !== -1) {
+        selectedValues.splice(index, 1);
+      }
+    }
+  });
+});
+
+// Agregar un listener de eventos al botón de enviar
+btnEnviar.addEventListener('click', (e) => {
+  // Crear un mensaje con los valores de las casillas de verificación seleccionadas
+  const message = ` ${localStorage.getItem('nombre_completo')}\n ${localStorage.getItem("numero")} Cuanta con esto:\n - ${selectedValues.join('\n - ')}`;
+
+  // Enviar el mensaje a WhatsApp
+  window.open(`https://wa.me/938365005?text=${encodeURIComponent(message)}`);
+});
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <p>Nombre de usuario</p>
+    <input type="text" id="Nombre_usuario">
+    <p>Nombre completo</p>
+    <input type="text" id="Nombre_completo">
+    <p>password</p>
+    <input type="text" id="password1">
+    <p>imagen</p>
+    <input type="text" id="imagen1">
+    <p>img_portada</p>
+    <input type="text" id="img_portada1">
+    <p>numero</p>
+    <input type="text" id="numero1">
+    <p>dni</p>
+    <input type="text" id="dni1">
+    <p>modelo</p>
+    <select name="" id="modelo1">
+        <option value="Editor">Editor</option>
+        <option value="ESTUDIANTE" selected>ESTUDIANTE</option>
+        <option value="PRE-GRADO">PRE-GRADO</option>
+        <option value="PROFESIONAL">PROFESIONAL</option>
+    </select>
+    <br>
+    <button id="envio">Añadir Resultado</button>
+    
+    <div id="resultados"></div>
+    <button id="copiar">Copiar Todos los Resultados</button>
+
+    <script>
+        var usuariosContrasenas = {};
+        var resultadosArray = [];
+
+        function mostrarResultados() {
+            var resultadosDiv = document.getElementById('resultados');
+            resultadosDiv.innerHTML = '';
+            resultadosArray.forEach(function(resultado, index) {
+                var resultadoDiv = document.createElement('div');
+                resultadoDiv.textContent = `${JSON.stringify(resultado, null, 2)}`;
+                resultadosDiv.appendChild(resultadoDiv);
+            });
+        }
+
+        document.getElementById('envio').addEventListener('click', function() {
+            var nombre_usuario = document.getElementById('Nombre_usuario').value;
+            var nombre_completo = document.getElementById('Nombre_completo').value;
+            var password = document.getElementById('password1').value;
+            var imagen = document.getElementById('imagen1').value;
+            var img_portada = document.getElementById('img_portada1').value;
+            var numero = document.getElementById('numero1').value;
+            var dni = document.getElementById('dni1').value;
+            var modelo = document.getElementById('modelo1').value;
+
+            usuariosContrasenas[nombre_usuario] = {
+                nombre_completo: nombre_completo,
+                numero: numero,
+                dni: dni,
+                password: password,
+                modelo: modelo,
+                imagen: imagen,
+                img_portada: img_portada,
+                // mensajes: []
+            };
+
+            resultadosArray.push(usuariosContrasenas[nombre_usuario]);
+            mostrarResultados();
+        });
+
+        document.getElementById('copiar').addEventListener('click', function() {
+            var resultadosTexto = 'var usuariosContrasenas = {\n' + Object.keys(usuariosContrasenas).map(function(key) {
+                return `  "${key}": ${JSON.stringify(usuariosContrasenas[key], null, 2)}`;
+            }).join(',\n') + '\n}';
+            var textarea = document.createElement('textarea');
+            textarea.value = resultadosTexto;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            alert('Todos los resultados copiados al portapapeles');
+        });
+
+    </script>
+</body>
+</html>
