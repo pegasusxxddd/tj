@@ -1,0 +1,224 @@
+
+.Close_Pgx{
+    position: absolute;
+    top: 2px;
+    right: 5px;
+    color: red;
+    font-size: 1.5em;
+}
+
+.Grande div{
+    max-width: 100%;
+}
+
+::-webkit-scrollbar-thumb{
+    background: var(--carta);
+    border-radius: 1000px;
+}
+::-webkit-scrollbar{
+    width: 5px;
+    background: #000;
+}
+.Grande ::-webkit-scrollbar{
+    width: 7px;
+    background: #000;
+}
+.Grande ::-webkit-scrollbar-thumb{
+    background: var(--carta);
+}
+
+.Grande .NOMBRE_CARTA{
+    display: none;
+}
+
+.parte{
+    display: none;
+}
+
+.informacion_{
+    height: 100%;
+    padding-top: 20px;
+    /* overflow: auto; */
+}
+
+.Grande .parte.activos{
+    display: block;
+}
+
+.Grande{
+
+    max-width: 95%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 1000px;
+    height: 700px;
+    padding: 0;
+    margin: 0;
+}
+
+.Grande .img{
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+
+.Grande .informacion_{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    place-content: center;
+    place-items: center;
+    background: #000000bb;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.Grande .parte{
+    width: 900px;
+    height: auto;
+    max-height: 700px;
+    overflow: auto;
+}
+.controladores{display: none;}
+.Grande .controladores{
+    display: block;
+}
+.carta .parte {
+    display: none; /* Oculta todas las partes por defecto */
+}
+
+.carta .parte#inicio {
+    display: block; /* Muestra el div de selección por defecto */
+}
+
+.Grande .controladores span{
+    display: block;
+    color: #ffffff;
+    background: #ffffff70;
+    font-size: 1em;
+    padding: 15px 20px 15px 20px;
+    border-radius: 1000px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0%, -50%);
+}
+
+.prev{
+    left: 5px;
+}
+
+.nex{
+    right: 5px;
+}
+
+#prev_prf:hover, #nex_prf:hover{
+    background: #fff;
+    color: #000;
+}
+
+
+
+.close{
+    display: none;
+}
+
+.Grande .close{
+    display: block;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    color: red;
+    font-size: 2em;
+}
+
+#markerURL {
+    margin-top: 10px;
+
+}
+
+#map{
+    display: none;
+}
+
+.Grande p, li{
+    font-weight: 0;
+    font-size: 1em;
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+}
+.Grande li{
+    width: auto;
+    display: block;
+    position: relative;
+    font-weight: 0;
+    margin-left: 15px;
+}
+
+.Grande .chex{
+    display: inline;
+    width: 15px;
+    font-size: 1em;
+    height: 15px;
+    top: 50%;
+    /* right: -10px; */
+    margin-left: 10px;
+    transform: translate(0%, -50%);
+    position: absolute;
+}
+
+@media screen and (max-width: 900px) {
+    .Grande{
+        max-width: 95%;
+        position: fixed;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        width: 1000px;
+        height: 98%;
+        padding: 0;
+        margin: 0;
+    }
+    .Grande .controladores{
+        display: block;
+    }
+    .carta .parte {
+        display: none; /* Oculta todas las partes por defecto */
+    }
+    
+    .carta .parte#inicio {
+        display: block; /* Muestra el div de selección por defecto */
+    }
+    .Grande .controladores span{
+        display: block;
+        color: #ffffff;
+        background: #ffffff70;
+        font-size: 1em;
+        padding: 15px 20px 15px 20px;
+        border-radius: 1000px;
+        position: absolute;
+        top: 95%;
+        transform: translate(0, -50%);
+    }
+
+    .prev{
+        left: 5px;
+    }
+    
+    .nex{
+        right: 5px;
+    }
+}

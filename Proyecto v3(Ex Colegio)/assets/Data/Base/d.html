@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta DNI</title>
+</head>
+<body>
+    <h2>Consulta DNI</h2>
+    
+    <!-- Input para el número de DNI -->
+    <label for="dni">Ingrese número de DNI:</label>
+    <input type="text" id="dni" maxlength="8" placeholder="Número de DNI">
+    
+    <!-- Botón para realizar la consulta -->
+    <button id="buscar">Buscar</button>
+    
+    <br><br>
+    
+    <!-- Input para mostrar el nombre completo -->
+    <label for="nombre">Nombre Completo:</label>
+
+    <input type="text" id="nombre" readonly>
+    <label for="nombre">Apellido Completo:</label>
+    <input type="text" id="Apellido" readonly>
+    <br><br>
+    
+    <!-- Input para mostrar el número de DNI -->
+    <label for="resultadoDNI">Número de DNI:</label>
+    <input type="text" id="resultadoDNI" readonly>
+    
+    <script>
+        document.getElementById('buscar').addEventListener('click', function() {
+            const dni = document.getElementById('dni').value;
+            const token = 'b0f0745f9e31b3da64814465a7bbd9eff61e1058731f5d7e563582af7bea3cac';  // Asegúrate de reemplazar con tu token de la API
+            
+            fetch(`https://apiperu.dev/api/dni`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ dni: dni })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('nombre').value = data.data.nombres;
+                    document.getElementById("Apellido").value = data.data.apellido_paterno + " " + data.data.apellido_materno; 
+                    document.getElementById('resultadoDNI').value = data.data.numero;
+                } else {
+                    alert('No se encontraron datos para el DNI ingresado');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Hubo un error al realizar la consulta');
+            });
+        });
+    </script>
+</body>
+</html>
